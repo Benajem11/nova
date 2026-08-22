@@ -1,0 +1,6 @@
+{
+  "name": "NOVA Digital - Digital Agency Tangier",
+  "description": "Premium digital agency based in Tangier, Morocco offering web development, AI solutions, branding, mobile apps, digital marketing, and business automation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
