@@ -23,6 +23,7 @@ export interface PortfolioItem {
   description: Record<Language, string>;
   badge: 'Demo Project' | 'Concept';
   image: string;
+  demoUrl: string;
   tags: string[];
   features: Record<Language, string[]>;
   metrics: { label: Record<Language, string>; value: string }[];

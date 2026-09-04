@@ -58,6 +58,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
   const description = project.description[language] || project.description.en;
   const features = project.features[language] || project.features.en;
 
+  const liveUrl = project.demoUrl === 'self'
+    ? (typeof window !== 'undefined' ? window.location.href : '#')
+    : project.demoUrl;
+
   const handleInquireProject = () => {
     const msg = isRTL
       ? `مرحباً نوفا ديجيتال، شاهدت نموذج (${title}) وأرغب في مناقشة مشروع مماثل لنشاطي التجاري.`
@@ -108,15 +112,25 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           </div>
 
           <div className="flex items-center gap-2">
+            <a
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold text-xs shadow-md transition-colors"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>{t.portfolio.viewLiveDemo}</span>
+            </a>
+
             <button
               onClick={() => setActiveMockupTab(activeMockupTab === 'overview' ? 'interactive' : 'overview')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
                 activeMockupTab === 'interactive'
-                  ? 'bg-cyan-500 text-slate-950'
-                  : 'bg-slate-800 text-cyan-400 hover:bg-slate-700'
+                  ? 'bg-slate-700 text-cyan-300'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
               }`}
             >
-              {activeMockupTab === 'interactive' ? 'View Overview' : 'Interactive Prototype Preview'}
+              {activeMockupTab === 'interactive' ? 'Overview' : 'Interactive Prototype'}
             </button>
 
             <button
@@ -397,7 +411,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             <span className="font-semibold text-slate-300">Inspired by this concept?</span> We can customize a tailor-made version for your business.
           </div>
 
-          <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full sm:w-auto">
+            <a
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold text-xs sm:text-sm shadow-md transition-colors"
+            >
+              <ExternalLink className="w-4 h-4" />
+              <span>{t.portfolio.viewLiveDemo}</span>
+            </a>
+
             <button
               onClick={handleInquireProject}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm shadow-md transition-colors"
